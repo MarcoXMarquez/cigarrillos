@@ -3,8 +3,14 @@ import mssql from "mssql";
 
 export const getPaises = async (req, res) => {
     const pool = await getConnection()
-    const result = await pool.request().query('SELECT * FROM pais')
-    res.json(result.recordset);
+    const result = await pool.request().query(
+        'SELECT * FROM pais',(error, results) => {
+        if (error) {
+            throw error;
+        } else {
+            res.render('../views/crud_pais.ejs', { resultado: results });
+        }
+    });
 };
 
 export const getPais = async (req, res) => {
