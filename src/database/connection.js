@@ -1,7 +1,7 @@
-
 import mssql from "mssql";
-const connectionSettings={
-    server: "DESKTOP-MAVOP9J\\SQLEXPRESS",
+
+const connectionSettings = {
+    server: "DESKTOP-FQEN2K1\\SQLEXPRESS",
     database: "cigarrillos",
     user: "admin",
     password: "admin1234",
@@ -11,14 +11,12 @@ const connectionSettings={
     }
 };
 
-export const getConnection= async()=>{
-    try{
-        const pool=await mssql.connect(connectionSettings);
-        const result = await pool.request().query("SELECT * FROM pais");
-        console.log(result);
+export const getConnection = async () => {
+    try {
+        const pool = await mssql.connect(connectionSettings);
         return pool;
     }
-    catch(error){
+    catch (error) {
         console.error(error);
     }
 }
